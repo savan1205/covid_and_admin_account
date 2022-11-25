@@ -1,0 +1,92 @@
+<odoo>
+    <template customize_show="True" id="portal_my_product_template" inherit_id="portal.portal_my_home" name="Show Projects / Tasks" priority="40">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Products</t>
+                <t t-set="url" t-value="'/my/products'"/>
+                <t t-set="placeholder_count" t-value="'product_count'"/>
+            </t>
+        </xpath>
+    </template>
+    <template id="portal_my_products" name="My Products">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Products</t>
+            </t>
+            <t t-if="not products">
+                <p>There are currently no products for your purchase.</p>
+            </t>
+            <t t-call="portal.portal_table" t-if="products">
+                <thead>
+                    <tr class="active">
+                        <th class="text-left">Product name</th>
+                        <th class="text-right">price</th>
+                        <th class="text-right">exp date</th>
+                        <th class="text-center"/>
+                        <!--                        <th class="text-right">Total</th>-->
+                    </tr>
+                </thead>
+                <t t-as="product" t-foreach="products">
+                    <tr>
+                        <td class="text-left">
+                            <a t-attf-href="/my/products/#{product.id}" target="_blank">
+                                <span t-field="product.name"/>
+                            </a>
+                        </td>
+                        <td class="text-right">
+                            <span t-field="product.price"/>
+                        </td>
+                        <td class="text-right">
+                            <span t-field="product.exp_date"/>
+                        </td>
+                        <!--                        <td class="text-right"><span t-field="quotation.validity_date"/></td>-->
+                        <!--                        <td class="text-center">-->
+                        <!--                            <span t-if="quotation.state == 'cancel'" class="badge badge-pill badge-secondary"><i class="fa fa-fw fa-remove"/>Cancelled</span>-->
+                        <!--                            <span t-if="quotation.is_expired" class="badge badge-pill badge-secondary"><i class="fa fa-fw fa-clock-o"/>Expired</span>-->
+                        <!--                        </td>-->
+                        <!--                        <td class="text-right">-->
+                        <!--                            <span t-field="quotation.amount_total"/>-->
+                        <!--                        </td>-->
+                    </tr>
+                </t>
+            </t>
+        </t>
+    </template>
+    <template id="product_details" name="Product Details">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Your Product Detail</t>
+            </t>
+            <t t-call="portal.portal_table" t-if="product">
+                <div class="container">
+                    <center>
+                        <p>
+                            <u>Your Product Details</u>
+                        </p>
+                    </center>
+                    <br/>
+                    <div class="row">
+                        <div class="col-5">
+                            <h3>Product Name</h3>
+                            <h3>Price</h3>
+                        </div>
+                        <div class="col-5">
+                            <p>
+                                <span t-esc="product.name"/>
+                            </p>
+                            <p>
+                                <span t-esc="product.price"/>
+                            </p>
+                        </div>
+                        <div class="col-2">
+                            <a class="btn btn-primary" title="Download">
+                                <i class="fa fa-thin fa-circle-down"/>Get exp_date</a>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

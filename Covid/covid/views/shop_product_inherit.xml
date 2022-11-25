@@ -1,0 +1,41 @@
+<odoo>
+	<!-- <template id="disable_add_to_cart" inherit_id="website_sale.product" active="False" customize_show="True" name="Add to Cart">
+
+
+        <xpath expr="//div[hasclass('row')]" position="inside">
+            <marquee>
+                <div class="alert alert-warning" style="width:100%;" role="alert">
+                    As of due to Covid these days, we have temperorily closed our online shop service  
+                </div>
+            </marquee>
+        </xpath>
+
+
+        <xpath expr="//div[@id='add_to_cart_wrap']/a[@id='add_to_cart']" position="replace">
+            <a role="button" id="add_to_cart_custom"
+               class="btn btn-primary disabled btn-lg js_check_product a-submit my-1 mr-1 px-5 font-weight-bold flex-grow-1"
+               href="#"><i class="fa fa-shopping-cart mr-2"/>ADD TO CART
+            </a>
+
+        </xpath> -->
+
+        <template id="product_inherit_custom" inherit_id="website_sale.product" active="True" customize_show="True"
+              name="Corona pandemic" priority="21">
+        <xpath expr="//div[@id='add_to_cart_wrap']/a[@id='add_to_cart']" position="replace">
+            <!--            <attribute name="class">btn btn-primary disabled</attribute> -->
+            <a role="button" id="add_to_cart_custom"
+               class="btn btn-primary disabled btn-lg js_check_product a-submit my-1 mr-1 px-5 font-weight-bold flex-grow-1"
+               href="#"><i class="fa fa-shopping-cart mr-2"/>ADD TO CART
+            </a>
+
+        </xpath>
+        <xpath expr="//div[hasclass('row')]" position="inside">
+            <marquee>
+                <div class="alert alert-warning" style="width:100%;" role="alert">
+                    Due to Covid, We are closed on accepting online orders for now
+                </div>
+            </marquee>
+        </xpath>
+    </template>
+    <!-- </template> -->
+</odoo>
